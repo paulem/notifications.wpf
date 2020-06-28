@@ -1,0 +1,38 @@
+name: build
+
+on:
+  push:
+#    branches: 
+#      - master
+    tags:
+      - v*
+env:
+  OUTPUT: nuget-packages
+
+jobs:
+  build-publish:
+    name: Build & Publish
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2.1.0
+      
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1.4.0
+      with:
+        dotnet-version: 3.1.101
+    
+    - name: Install dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build -c Release --no-restore
+    
+    #- name: Test
+    #  run: dotnet test --no-restore --verbosity normal
+    
+    - name: Create NuGet packages
+      run: dotnet pack -c Release --no-build --no-restore -o ${{ env.OUTPUT }}
+    
+    - name: Publish to nuget.org
+      run: dotnet nuget push ${{ env.OUTPUT }}\*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }} --no-symbols --skip-duplicate
