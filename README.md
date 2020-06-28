@@ -1,7 +1,7 @@
 ![pixelmaniac](https://user-images.githubusercontent.com/2874236/85890961-02342b80-b7f7-11ea-8294-345c49a9d3a0.png)
 <br/>
 <br/>
-[![Build status](https://github.com/paulem/pixelmaniac.notifications/workflows/notificatons/badge.svg)](https://github.com/paulem/pixelmaniac.notifications/actions)
+[![Build status](https://github.com/paulem/pixelmaniac.notifications/workflows/build/badge.svg)](https://github.com/paulem/pixelmaniac.notifications/actions)
 [![Nuget version](https://img.shields.io/nuget/v/Pixelmaniac.Notifications?label=NuGet)](https://nuget.org/packages/Pixelmaniac.Notifications)
 [![Nuget downloads](https://img.shields.io/nuget/dt/Pixelmaniac.Notifications?label=Downloads)](https://nuget.org/packages/Pixelmaniac.Notifications)
 [![Twitter Pavel](https://img.shields.io/badge/twitter-%40upavel-55acee.svg?label=Twitter)](https://twitter.com/upavel)
