@@ -1,4 +1,4 @@
-![pixelmaniac](https://user-images.githubusercontent.com/2874236/85890961-02342b80-b7f7-11ea-8294-345c49a9d3a0.png)
+![Logo](https://user-images.githubusercontent.com/2874236/85953132-f40d1900-b976-11ea-89bf-a07a935225d5.png)
 <br/>
 <br/>
 [![Build status](https://github.com/paulem/pixelmaniac.notifications/workflows/build/badge.svg)](https://github.com/paulem/pixelmaniac.notifications/actions)
