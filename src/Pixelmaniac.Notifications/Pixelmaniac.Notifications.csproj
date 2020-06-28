@@ -10,7 +10,7 @@
     <Version>0.2.2</Version>
     <Authors>Pavel Mikhaylov</Authors>
     <Product>Pixelmaniac.Notifications</Product>
-    <Description>Accurate toast notifications, visually similar to Windows 10 notifications, for WPF.</Description>
+    <Description>Accurate toast notifications for WPF, visually similar to Windows 10 notifications.</Description>
     <Company>7room</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>wpf ui notify message messages toast toasts notification notifications windows win10 windows-10 material xaml .net pixelmaniac pxmc</PackageTags>

@@ -7,7 +7,7 @@
 [![Twitter Pavel](https://img.shields.io/badge/twitter-%40upavel-55acee.svg?label=Twitter)](https://twitter.com/upavel)
 
 ## Notifications
-Accurate toast notifications, visually similar to Windows 10 notifications, for WPF.
+Accurate toast notifications for WPF, visually similar to Windows 10 notifications.
 
 #### Features
 * Default toast notification template, visually similar to Windows 10
