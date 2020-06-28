@@ -2,8 +2,8 @@ name: build
 
 on:
   push:
-#    branches: 
-#      - master
+    branches: 
+      - master
     tags:
       - v*
 env:
@@ -35,4 +35,4 @@ jobs:
       run: dotnet pack -c Release --no-build --no-restore -o ${{ env.OUTPUT }}
     
     - name: Publish to nuget.org
-      run: dotnet nuget push ${{ env.OUTPUT }}\*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }} --no-symbols --skip-duplicate
+      run: dotnet nuget push ${{ env.OUTPUT }}\*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }} --no-symbols true --skip-duplicate
