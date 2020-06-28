@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.2.2</Version>
+    <Authors>Pavel Mikhaylov</Authors>
+    <Product>Pixelmaniac.Notifications</Product>
+    <Description>Accurate toast notifications, visually similar to Windows 10 notifications, for WPF.</Description>
+    <Company>7room</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>wpf ui notify message messages toast toasts notification notifications windows win10 windows-10 material xaml .net pixelmaniac pxmc</PackageTags>
+    <PackageProjectUrl>https://github.com/paulem/pixelmaniac.notifications</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/paulem/pixelmaniac.notifications</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>© $([System.DateTime]::Today.ToString(yyyy)) Pavel Mikhaylov</Copyright>
+    <PackageIcon>package-icon.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Assets\package-icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,54 +1,89 @@
-# Notifications.Wpf
-WPF toast notifications.
+![pixelmaniac](https://user-images.githubusercontent.com/2874236/85890961-02342b80-b7f7-11ea-8294-345c49a9d3a0.png)
+<br/>
+<br/>
+[![Build status](https://github.com/paulem/pixelmaniac.notifications/workflows/notificatons/badge.svg)](https://github.com/paulem/pixelmaniac.notifications/actions)
+[![Nuget version](https://img.shields.io/nuget/v/Pixelmaniac.Notifications?label=NuGet)](https://nuget.org/packages/Pixelmaniac.Notifications)
+[![Nuget downloads](https://img.shields.io/nuget/dt/Pixelmaniac.Notifications?label=Downloads)](https://nuget.org/packages/Pixelmaniac.Notifications)
+[![Twitter Pavel](https://img.shields.io/badge/twitter-%40upavel-55acee.svg?label=Twitter)](https://twitter.com/upavel)
 
-![Demo](http://i.imgur.com/UvYIVFV.gif)
-### Installation:
-```
-Install-Package Notifications.Wpf
-```
-### Usage:
+## Notifications
+Accurate toast notifications, visually similar to Windows 10 notifications, for WPF.
 
-#### Notification over the taskbar:
+#### Features
+* Default toast notification template, visually similar to Windows 10
+  * App identity
+  * Attribution text
+  * Vector & raster icon support
+  * Choose between small (16px) or large icon (48px)
+* Unobtrusive, smooth animations
+* Easy to customize
+
+#### Installation
+##### Requirements
+`.NET Framework 4.7.2`, `Net Core 3.1`
+```
+Install-Package Pixelmaniac.Notifications
+```
+#### Usage
+##### Simple
 ```C#
 var notificationManager = new NotificationManager();
 
-notificationManager.Show(new NotificationContent
-           {
-               Title = "Sample notification",
-               Message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-               Type = NotificationType.Information
-           });
+notificationManager.Notify(
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "Simple notification");
 ```
 
-#### Notification inside application window:
+##### Advanced
+```C#
+var notificationManager = new NotificationManager();
+
+var content = new NotificationContent
+{
+    Title = "Simple notification",
+    Message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    AppIdentity = "App",
+    AttributionText = "Via PXMC",
+    VectorIcon = Application.Current.TryFindResource("Geometry.Icon.16") as StreamGeometry,
+    UseLargeIcon = true
+};
+
+notificationManager.Notify(content);
+```
+
+##### Notification inside application window
 - Adding namespace:
 ```XAML
-xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
+xmlns:pxmc="http://7room.net/xaml/pixelmaniac"
 ```
 - Adding new NotificationArea:
 ```XAML
-<notifications:NotificationArea x:Name="WindowArea" Position="TopLeft" MaxItems="3"/>
+<pxmc:NotificationArea MaxNotificationsCount="3" Position="BottomRight" />
 ```
 - Displaying notification:
 ```C#
-notificationManager.Show(
-                new NotificationContent {Title = "Notification", Message = "Notification in window!"},
-                areaName: "WindowArea");
+notificationManager.Options.InAppNotificationPlacement = true;
+
+notificationManager.Notify(
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "Simple notification");
 ```
 
-#### Simple text with OnClick & OnClose actions:
+#### OnClick & OnClose actions
 ```C#
-notificationManager.Show("String notification", onClick: () => Console.WriteLine("Click"),
-               onClose: () => Console.WriteLine("Closed!"));
+notificationManager.Notify(
+    content,
+    onClick: () => Console.WriteLine("Click"),
+    onClose: () => Console.WriteLine("Closed"));
 ```
-### Caliburn.Micro MVVM support:
+### Caliburn.Micro MVVM support
 - App.xaml:
 ```XAML
-xmlns:controls="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
+xmlns:pxmc="http://7room.net/xaml/pixelmaniac"
 
 <Application.Resources>
     [...]
-    <Style TargetType="controls:Notification">
+    <Style TargetType="{x:Type pxmc:Notification}">
         <Style.Resources>
             <DataTemplate DataType="{x:Type micro:PropertyChangedBase}">
                 <ContentControl cal:View.Model="{Binding}"/>
@@ -57,17 +92,17 @@ xmlns:controls="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.
     </Style>
 </Application.Resources>
 ```
-- ShellViewModel:
+- MainViewModel
 ```C#
-var content = new NotificationViewModel(_manager)
+var vm = new NotificationViewModel
 {
-    Title = "Custom notification.",
-    Message = "Click on buttons!"
+    Title = "Custom notification",
+    Message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 };
 
-_manager.Show(content, expirationTime: TimeSpan.FromSeconds(30));
+_notificationManager.Notify(vm, expirationTime: TimeSpan.FromSeconds(30));
 ```
-- NotificationView:
+- NotificationView
 ```XAML
 <DockPanel LastChildFill="False">
     <!--Using CloseOnClick attached property to close notification when button is pressed-->
@@ -75,6 +110,5 @@ _manager.Show(content, expirationTime: TimeSpan.FromSeconds(30));
     <Button x:Name="Cancel" Content="Cancel" DockPanel.Dock="Right" Margin="0,0,8,0" controls:Notification.CloseOnClick="True"/>
 </DockPanel>
 ```
-- Result:
-
-![Demo](http://i.imgur.com/G1ZU2ID.gif)
+##### Thanks
+https://github.com/Federerer
