@@ -43,9 +43,16 @@ namespace Pixelmaniac.Notifications
             content.Title = !string.IsNullOrEmpty(title) ? title : content.AppIdentity;
 
             if (showIcon)
-                content.VectorIcon = Application.Current.TryFindResource("Geometry.Notification.16") as StreamGeometry;
+            {
+                var resourceDictionary = new ResourceDictionary
+                {
+                    Source = new Uri("/Pixelmaniac.Notifications;component/Themes/Generic.xaml", UriKind.RelativeOrAbsolute)
+                };
 
-            Notify(content);
+                content.VectorIcon = resourceDictionary["Geometry.Notification.16"] as StreamGeometry;
+            }
+
+            Notify(content, expirationTime);
         }
 
         public void Notify(object content, TimeSpan? expirationTime = null, Action onClick = null, Action onClose = null)

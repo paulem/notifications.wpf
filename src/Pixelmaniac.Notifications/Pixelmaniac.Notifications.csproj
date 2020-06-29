@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net452;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.2.2</Version>
+    <Version>0.2.3</Version>
     <Authors>Pavel Mikhaylov</Authors>
     <Product>Pixelmaniac.Notifications</Product>
     <Description>Accurate toast notifications for WPF, visually similar to Windows 10 notifications.</Description>

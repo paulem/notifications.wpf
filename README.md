@@ -1,15 +1,18 @@
-![Logo](https://user-images.githubusercontent.com/2874236/85953132-f40d1900-b976-11ea-89bf-a07a935225d5.png)
+![logo](https://user-images.githubusercontent.com/2874236/85953132-f40d1900-b976-11ea-89bf-a07a935225d5.png)
 <br/>
 <br/>
-[![Build status](https://github.com/paulem/pixelmaniac.notifications/workflows/build/badge.svg)](https://github.com/paulem/pixelmaniac.notifications/actions)
-[![Nuget version](https://img.shields.io/nuget/v/Pixelmaniac.Notifications?label=NuGet)](https://nuget.org/packages/Pixelmaniac.Notifications)
-[![Nuget downloads](https://img.shields.io/nuget/dt/Pixelmaniac.Notifications?label=Downloads)](https://nuget.org/packages/Pixelmaniac.Notifications)
-[![Twitter Pavel](https://img.shields.io/badge/twitter-%40upavel-55acee.svg?label=Twitter)](https://twitter.com/upavel)
+[![build status](https://github.com/paulem/pixelmaniac.notifications/workflows/build/badge.svg)](https://github.com/paulem/pixelmaniac.notifications/actions)
+[![nuget version](https://img.shields.io/nuget/v/Pixelmaniac.Notifications)](https://nuget.org/packages/Pixelmaniac.Notifications)
+[![nuget downloads](https://img.shields.io/nuget/dt/Pixelmaniac.Notifications)](https://nuget.org/packages/Pixelmaniac.Notifications)
+[![twitter pavel](https://img.shields.io/badge/twitter-%40upavel-55acee.svg)](https://twitter.com/upavel)
 
-## Notifications
-Accurate toast notifications for WPF, visually similar to Windows 10 notifications.
 
-#### Features
+### Accurate toast notifications for WPF,<br/>visually similar to Windows 10 notifications.
+**[See demo video](https://paulem.com/pxmc/notifications/demo)**
+
+![notification screenshot](https://user-images.githubusercontent.com/2874236/85958318-6133a500-b99d-11ea-8c46-ae57b95a6f34.png) ![notification screenshot](https://user-images.githubusercontent.com/2874236/85958380-d3a48500-b99d-11ea-9d47-ac8cd7128396.png) ![notification screenshot](https://user-images.githubusercontent.com/2874236/85958379-d2735800-b99d-11ea-857b-06b823d5faf2.png)
+
+### Features
 * Default toast notification template, visually similar to Windows 10
   * App identity
   * Attribution text
@@ -18,23 +21,32 @@ Accurate toast notifications for WPF, visually similar to Windows 10 notificatio
 * Unobtrusive, smooth animations
 * Easy to customize
 
-#### Installation
-##### Requirements
-`.NET Framework 4.7.2`, `Net Core 3.1`
+### Supported platforms
+* `.NET Framework 4.5.2 +`
+* `.NET Core 3.1`
+
+### Installation
+Pixelmaniac.Notifications is available on [NuGet](https://www.nuget.org/packages/Pixelmaniac.Notifications).
+
+Install using NuGet:
 ```
 Install-Package Pixelmaniac.Notifications
 ```
-#### Usage
-##### Simple
+Install using .NET CLI:
+```
+dotnet add package Pixelmaniac.Notifications
+```
+### Usage 
+##### Show simple toast notification
 ```C#
 var notificationManager = new NotificationManager();
 
 notificationManager.Notify(
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "Simple notification");
+    message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "Simple notification");
 ```
 
-##### Advanced
+##### Use NotificationContent to override AppIdentity, set icons and etc.
 ```C#
 var notificationManager = new NotificationManager();
 
@@ -44,23 +56,23 @@ var content = new NotificationContent
     Message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     AppIdentity = "App",
     AttributionText = "Via PXMC",
-    VectorIcon = Application.Current.TryFindResource("Geometry.Icon.16") as StreamGeometry,
+    VectorIcon = Application.Current.TryFindResource("[...]") as StreamGeometry,
     UseLargeIcon = true
 };
 
 notificationManager.Notify(content);
 ```
 
-##### Notification inside application window
-- Adding namespace:
+##### Show notification inside application window
+Add namespace:
 ```XAML
 xmlns:pxmc="http://7room.net/xaml/pixelmaniac"
 ```
-- Adding new NotificationArea:
+Add `NotificationArea` within which notifications will be displayed:
 ```XAML
 <pxmc:NotificationArea MaxNotificationsCount="3" Position="BottomRight" />
 ```
-- Displaying notification:
+Show notification:
 ```C#
 notificationManager.Options.InAppNotificationPlacement = true;
 
@@ -69,15 +81,17 @@ notificationManager.Notify(
     "Simple notification");
 ```
 
-#### OnClick & OnClose actions
+##### OnClick & OnClose actions
 ```C#
 notificationManager.Notify(
     content,
     onClick: () => Console.WriteLine("Click"),
     onClose: () => Console.WriteLine("Closed"));
 ```
-### Caliburn.Micro MVVM support
-- App.xaml:
+##### Caliburn.Micro MVVM support
+>[Here](https://github.com/paulem/pixelmaniac.notifications/tree/master/src/Pixelmaniac.Notifications.Demo) is a fully working example of an app with Caliburn.Micro support.
+
+Modify App.xaml:
 ```XAML
 xmlns:pxmc="http://7room.net/xaml/pixelmaniac"
 
@@ -92,7 +106,7 @@ xmlns:pxmc="http://7room.net/xaml/pixelmaniac"
     </Style>
 </Application.Resources>
 ```
-- MainViewModel
+Create a ViewModel and use it as a notification content:
 ```C#
 var vm = new NotificationViewModel
 {
@@ -102,7 +116,7 @@ var vm = new NotificationViewModel
 
 _notificationManager.Notify(vm, expirationTime: TimeSpan.FromSeconds(30));
 ```
-- NotificationView
+Use `controls:Notification.CloseOnClick` in your view:
 ```XAML
 <DockPanel LastChildFill="False">
     <!--Using CloseOnClick attached property to close notification when button is pressed-->
@@ -110,5 +124,6 @@ _notificationManager.Notify(vm, expirationTime: TimeSpan.FromSeconds(30));
     <Button x:Name="Cancel" Content="Cancel" DockPanel.Dock="Right" Margin="0,0,8,0" controls:Notification.CloseOnClick="True"/>
 </DockPanel>
 ```
-##### Thanks
+
+#### Thanks
 https://github.com/Federerer
