@@ -2,12 +2,10 @@ name: build
 
 on:
   push:
-   # branches: 
-   #   - master
+    #branches: 
+    #  - feature/sign
     tags:
-      - v*
-env:
-  OUTPUT: nuget-packages
+      - v
 
 jobs:
   build-publish:
@@ -22,17 +20,28 @@ jobs:
       with:
         dotnet-version: 3.1.101
     
-    - name: Install dependencies
-      run: dotnet restore
+    - name: Setup Azure SignTool
+      run: dotnet tool install azuresigntool --global
     
     - name: Build
-      run: dotnet build -c Release --no-restore
+      run: dotnet build src\Pixelmaniac.Notifications -c Release
     
     #- name: Test
     #  run: dotnet test --no-restore --verbosity normal
-    
-    - name: Create NuGet packages
-      run: dotnet pack -c Release --no-build --no-restore -o ${{ env.OUTPUT }}
+      
+    - name: Sign binaries
+      run: >
+        azuresigntool sign -tr http://timestamp.comodoca.com
+        -kvu ${{ secrets.AZURE_KEY_VAULT_URL }}
+        -kvi ${{ secrets.AZURE_KEY_VAULT_CLIENT_ID }}
+        -kvs ${{ secrets.AZURE_KEY_VAULT_CLIENT_SECRET }}
+        -kvc pmc
+        -v
+        src\Pixelmaniac.Notifications\bin\Release\net452\Pixelmaniac.Notifications.dll
+        src\Pixelmaniac.Notifications\bin\Release\netcoreapp3.1\Pixelmaniac.Notifications.dll
+         
+    - name: Create NuGet package
+      run: dotnet pack src\Pixelmaniac.Notifications -c Release --no-build --no-restore
     
     - name: Publish to nuget.org
-      run: dotnet nuget push ${{ env.OUTPUT }}\*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }} --no-symbols true --skip-duplicate
+      run: dotnet nuget push src\Pixelmaniac.Notifications\bin\Release\*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }} --no-symbols true --skip-duplicate
