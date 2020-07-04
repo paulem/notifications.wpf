@@ -44,4 +44,4 @@ jobs:
       run: dotnet pack src\Pixelmaniac.Notifications -c Release --no-build --no-restore
     
     - name: Publish to nuget.org
-      run: dotnet nuget push src\Pixelmaniac.Notifications\bin\Release\*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }} --no-symbols true --skip-duplicate
+      run: dotnet nuget push src\Pixelmaniac.Notifications\bin\Release\*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }} --skip-duplicate
