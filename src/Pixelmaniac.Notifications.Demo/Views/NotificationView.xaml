@@ -5,7 +5,7 @@
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:pxmc="http://7room.net/xaml/pixelmaniac"
+    xmlns:pxmc="https://github.com/paulem/pixelmaniac"
     xmlns:viewModels="clr-namespace:Pixelmaniac.Notifications.Demo.ViewModels"
     cal:Bind.AtDesignTime="True"
     d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,

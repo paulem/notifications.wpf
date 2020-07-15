@@ -69,7 +69,7 @@ notificationManager.Notify(content);
 #### Show notification inside application window
 1. Add namespace:
 ```XAML
-xmlns:pxmc="http://7room.net/xaml/pixelmaniac"
+xmlns:pxmc="https://github.com/paulem/pixelmaniac"
 ```
 2. Add `NotificationArea` within which notifications will be displayed:
 ```XAML
@@ -97,7 +97,7 @@ notificationManager.Notify(
 
 1. Modify App.xaml:
 ```XAML
-xmlns:pxmc="http://7room.net/xaml/pixelmaniac"
+xmlns:pxmc="https://github.com/paulem/pixelmaniac"
 
 <Application.Resources>
     [...]

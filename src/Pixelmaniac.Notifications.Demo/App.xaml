@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:Pixelmaniac.Notifications.Demo"
     xmlns:micro="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Core"
     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
-    xmlns:pxmc="http://7room.net/xaml/pixelmaniac">
+    xmlns:pxmc="https://github.com/paulem/pixelmaniac">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

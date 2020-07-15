@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Pavel Mikhaylov</Authors>
     <Product>Pixelmaniac.Notifications</Product>
     <Description>Accurate toast notifications for WPF, visually similar to Windows 10 notifications.</Description>

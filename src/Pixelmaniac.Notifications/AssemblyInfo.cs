@@ -3,7 +3,8 @@ using System.Windows.Markup;
 
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 
-[assembly: XmlnsPrefix("http://7room.net/xaml/pixelmaniac", "pxmc")]
-[assembly: XmlnsDefinition("http://7room.net/xaml/pixelmaniac", "Pixelmaniac.Notifications")]
-[assembly: XmlnsDefinition("http://7room.net/xaml/pixelmaniac", "Pixelmaniac.Notifications.Controls")]
-[assembly: XmlnsDefinition("http://7room.net/xaml/pixelmaniac", "Pixelmaniac.Notifications.Converters")]
+[assembly: XmlnsDefinition("https://github.com/paulem/pixelmaniac", "Pixelmaniac.Notifications")]
+[assembly: XmlnsDefinition("https://github.com/paulem/pixelmaniac", "Pixelmaniac.Notifications.Controls")]
+[assembly: XmlnsDefinition("https://github.com/paulem/pixelmaniac", "Pixelmaniac.Notifications.Converters")]
+
+[assembly: XmlnsPrefix("https://github.com/paulem/pixelmaniac", "pxmc")]
