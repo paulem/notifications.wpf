@@ -31,7 +31,7 @@ jobs:
       
     - name: Sign binaries
       run: >
-        azuresigntool sign -tr http://timestamp.comodoca.com
+        azuresigntool sign -tr http://timestamp.sectigo.com
         -kvu ${{ secrets.AZURE_KEY_VAULT_URL }}
         -kvi ${{ secrets.AZURE_KEY_VAULT_CLIENT_ID }}
         -kvs ${{ secrets.AZURE_KEY_VAULT_CLIENT_SECRET }}
